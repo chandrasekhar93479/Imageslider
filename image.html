@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: lightblue;
+        }
+        .slider-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            width: 100%;
+            display: none;
+        }
+        .slide.active {
+            display: block;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        nav{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        h1 {
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 24px;
+            background-color: #fff;
+            width: 100%;
+            position:margin-top: absolute;
+
+
+        
+    </style>
+</head>
+<body>
+    <nav style="width: 100%; background-color: #333; padding: 10px 0; text-align: center;">
+        <a href="#" style="color: white; text-decoration: none; margin: 0 15px; font-size: 18px;">Home</a>
+        <a href="#about" style="color: white; text-decoration: none; margin: 0 15px; font-size: 18px;">About</a>
+        <h1 style="text-align: center; margin: 20px 0; padding: 10px; font-size: 24px; background-color: #fff; width: 100%;">Welcome to Image Slider</h1>
+
+    </nav>
+    
+    <div class="slider-container">
+        <div class="slider">
+            <img src="image1.jpg" class="slide active" alt="Image 1">
+            <img src="image2.jpg" class="slide" alt="Image 2">
+            <img src="image3.jpg" class="slide" alt="Image 3">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+
+        </div>
+
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove("active");
+                if (i === index) slide.classList.add("active");
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextSlide, 3000); // Auto-slide every 3 seconds
+    </script>
+
+<footer style="text-align: center; position: absolute; bottom: 0; width: 100%; padding: 10px; background-color: #f4f4f4; font-size: 14px; color: #666;">
+    &copy; 2025 Image Slider. All rights reserved.
+    created by chandrasekhar reddy
+</footer>
+</body>
+
+    
+</body>
+</html>
